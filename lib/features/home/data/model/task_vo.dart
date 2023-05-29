@@ -6,10 +6,11 @@ class TaskVO {
   String latitude;
   String longitude;
   String? id;
+  String? uniqueId;
   bool favorite;
 
   TaskVO(this.title, this.description, this.crit, this.date, this.favorite,
-      this.id, this.latitude, this.longitude);
+      this.id, this.latitude, this.longitude, this.uniqueId);
 
   Map toJson() => {
         "crit": crit,
@@ -22,7 +23,7 @@ class TaskVO {
         "longitude": longitude
       };
 
-  TaskVO.fromJson(Map<String, dynamic> json)
+  TaskVO.fromJson(Map<String, dynamic> json, key)
       : id = json['id'],
         crit = json['crit'],
         description = json['description'],
@@ -30,5 +31,16 @@ class TaskVO {
         favorite = json['favorite'],
         date = json['date'],
         latitude = json['latitude'],
-        longitude = json['longitude'];
+        longitude = json['longitude'],
+        uniqueId = key;
+
+
+  static List<TaskVO> listFromJson(Map<String, dynamic> json) {
+    List<TaskVO> tasks = [];
+    json.forEach((key, value) {
+      Map<String, dynamic> item = { "id": key, ...value };
+      tasks.add(TaskVO.fromJson(item,key));
+    });
+    return tasks;
+  }
 }

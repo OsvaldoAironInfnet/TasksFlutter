@@ -60,8 +60,13 @@ class HomeAddTaskPresenterImpl extends Navigation
       } else {
         datePicked1 = date;
       }
-      _saveARemoteTask(TaskVO(title, description, "baixa", datePicked1, isFav,
-          "".generateUuid(), locate.split(":")[0], locate.split(":")[1]));
+      if (locate != "") {
+        _saveARemoteTask(TaskVO(title, description, "baixa", datePicked1, isFav,
+            "".generateUuid(), locate.split(":")[0], locate.split(":")[1], ""));
+      } else {
+        _saveARemoteTask(TaskVO(title, description, "baixa", datePicked1, isFav,
+            "".generateUuid(), "", "", ""));
+      }
     }
   }
 

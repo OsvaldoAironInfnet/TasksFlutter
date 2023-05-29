@@ -4,10 +4,18 @@ import 'dart:convert';
 import '../datasource/home_task_datasource.dart';
 
 class HomeRepository {
-  HomeTaskRemoteDataSource _homeTaskRemoteDataSource =
+  final HomeTaskRemoteDataSource _homeTaskRemoteDataSource =
       HomeTaskRemoteDataSource();
 
   Future<Response> saveTask(TaskVO taskVO) {
     return _homeTaskRemoteDataSource.insert(jsonEncode(taskVO.toJson()));
+  }
+
+  Future<Response> getAllTasks() {
+    return _homeTaskRemoteDataSource.list();
+  }
+
+  Future<Response> deleteTask(String id) {
+    return _homeTaskRemoteDataSource.delete(id);
   }
 }

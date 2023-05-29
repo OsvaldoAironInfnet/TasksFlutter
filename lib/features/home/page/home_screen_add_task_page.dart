@@ -432,32 +432,35 @@ class _HomeScreenAddTaskPageState extends BaseState<HomeScreenAddTaskPage>
                                     const EdgeInsets.only(left: 14, right: 14),
                                 child: SizedBox(
                                   width: MediaQuery.of(context).size.width,
-                                  child: ElevatedButton(
-                                      style: const ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStatePropertyAll<Color>(
-                                                Colors.green),
-                                      ),
-                                      onPressed: () {
-                                        _homeAddTaskPresenterImpl
-                                            ?.onClickAddTask(
-                                                _textEditingControllerTitle
-                                                    .text,
-                                                _textEditingControllerDescription
-                                                    .text,
-                                                _datePicked,
-                                                _isTaskFav,
-                                                _dataLocateLat,
-                                                _dataLocateLong);
-                                      },
-                                      child: !_isLoading
-                                          ? const Text("Adicionar")
-                                          : const CircularProgressIndicator(
-                                              strokeWidth: 2.0,
-                                              backgroundColor: Color(
-                                                  ColorResource
-                                                      .BLUE_COLOR_SPLASH_SCREEN),
-                                            )),
+                                  child: Visibility(
+                                    visible: _setupExpandItem,
+                                    child: ElevatedButton(
+                                        style: const ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStatePropertyAll<Color>(
+                                                  Colors.green),
+                                        ),
+                                        onPressed: () {
+                                          _homeAddTaskPresenterImpl
+                                              ?.onClickAddTask(
+                                                  _textEditingControllerTitle
+                                                      .text,
+                                                  _textEditingControllerDescription
+                                                      .text,
+                                                  _datePicked,
+                                                  _isTaskFav,
+                                                  _dataLocateLat,
+                                                  _dataLocateLong);
+                                        },
+                                        child: !_isLoading
+                                            ? const Text("Adicionar")
+                                            : const CircularProgressIndicator(
+                                                strokeWidth: 2.0,
+                                                backgroundColor: Color(
+                                                    ColorResource
+                                                        .BLUE_COLOR_SPLASH_SCREEN),
+                                              )),
+                                  ),
                                 ),
                               ),
                             ),
