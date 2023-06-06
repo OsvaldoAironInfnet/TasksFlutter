@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tasks_flutter_one/features/home/data/provider/home_task_provider.dart';
 import 'navigation/app_router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => HomeTaskProvider(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,9 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: RouterNavigation.ROUTERS,
-      theme: ThemeData(
-        fontFamily: 'Comic Sans'
-      ),
+      theme: ThemeData(fontFamily: 'Comic Sans'),
     );
   }
 }
